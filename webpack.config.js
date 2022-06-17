@@ -24,8 +24,25 @@ export default {
 				}
 			}
 		]
+	},
+	resolve: {
+		fallback: {
+			stream: false,
+			path: false,
+			fs: false,
+		},
+		alias: [
+			{
+				'name': 'jszip',
+				'alias': 'jszip/lib/index.js',
+				onlyModule: true,
+			},
+			{ // Comment this out to disable zopfli
+				'name': 'pako',
+				'alias': fileURLToPath(
+					new URL('./src/zopfli-pako-adapter.js', import.meta.url)
+				),
+			}
+		],
 	}
-	// resolve: {
-	// 	alias: {},
-	// }
 }
